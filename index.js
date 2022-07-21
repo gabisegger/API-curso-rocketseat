@@ -7,11 +7,21 @@ app.listen('3000');
 
 //rotas
 
-//GET
-app.route('/').get( (req,res) => res.send("hello"))
-app.route('/sobre').get( (req,res) => res.send("hello sobre"))
+app.use(express.json()) //middleware
 
-//POST
-//middleware
-app.use(express.json())
-app.route('/').post( (req,res) => res.send(req.body))
+//GET - receber
+//app.route('/').get( (req,res) => res.send("hello"))
+//app.route('/sobre').get( (req,res) => res.send("hello sobre"))
+
+//POST - enviar
+//app.route('/').post( (req,res) => res.send(req.body))
+
+//PUT - alterar
+let author = "Gabriela"
+
+app.route('/').get( (req,res) => res.send(author) )
+
+app.route('/').put( (req,res) => {
+    author = req.body.author
+    res.send(author)
+})
